@@ -31,7 +31,7 @@ function App() {
       path: "", 
       element: <Layout />, 
       children: [
-        { index: true, element: <Login /> }, 
+        { index: true, element: <Home /> }, 
         { path: "categories", element: <ProtectedRoute><Categories /></ProtectedRoute> },
         { path: "cart", element: <ProtectedRoute><Cart /></ProtectedRoute> },
         { path: "brands", element: <ProtectedRoute><Brands /></ProtectedRoute> },
