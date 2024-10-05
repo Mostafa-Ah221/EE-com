@@ -84,7 +84,11 @@ export default function CartContextProvider({ children }) {
   const [cartDetails, setCartDetails] = useState(null);
 
   useEffect(() => {
-    fetchCartData();
+    // تحقق من وجود توكن المستخدم
+    const userToken = localStorage.getItem("userToken");
+    if (userToken) {
+      fetchCartData();
+    }
   }, []);
 
   async function fetchCartData() {
@@ -96,12 +100,13 @@ export default function CartContextProvider({ children }) {
         toast.error('Failed to load cart data');
       }
     } catch (error) {
-      toast.error(`Error fetching cart data: ${error.response?.data?.message || error.message}`);
+      // هنا يمكن تجاهل الخطأ إذا كان المستخدم لم يسجل الدخول
+      // toast.error(`Error fetching cart data: ${error.response?.data?.message || error.message}`);
     }
   }
 
   async function addItem(id) {
-        console.log("Product ID:", id);
+    console.log("Product ID:", id);
 
     try {
       const { data } = await addToCart(id);
@@ -119,8 +124,6 @@ export default function CartContextProvider({ children }) {
   }
 
   async function removeItem(id) {
-    // console.log("Product ID:", id);
-
     try {
       const { data } = await removeProductItem(id);
       if (data) {
@@ -133,7 +136,6 @@ export default function CartContextProvider({ children }) {
       toast.error(`Error removing product: ${error.response?.data?.message || error.message}`);
     }
   }
-console.log("Token:", localStorage.getItem("userToken"));
 
   async function updataCount(id, count) {
     try {

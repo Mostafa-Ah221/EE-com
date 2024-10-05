@@ -31,7 +31,7 @@ function App() {
       path: "", 
       element: <Layout />, 
       children: [
-        { index: true, element: <Login /> }, // اجعل Login هو المسار الافتراضي
+        { index: true, element: <Login /> }, 
         { path: "categories", element: <ProtectedRoute><Categories /></ProtectedRoute> },
         { path: "cart", element: <ProtectedRoute><Cart /></ProtectedRoute> },
         { path: "brands", element: <ProtectedRoute><Brands /></ProtectedRoute> },
@@ -41,6 +41,7 @@ function App() {
         { path: "allorders", element: <ProtectedRoute><Orders /></ProtectedRoute> },
         { path: "productsdetails/:id/:category", element: <ProtectedRoute><ProductsDetails /></ProtectedRoute> },
         { path: "register", element: <Register /> },
+        { path: "login", element: <Login /> },
         { path: "*", element: <NotFound /> },
       ]
     }
